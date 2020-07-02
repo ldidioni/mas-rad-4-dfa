@@ -1,0 +1,16 @@
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <mat-form-field>
+        <mat-label for="issueDescription">Issue description</mat-label>
+            <input matInput formControlName="issueDescription" id="issueDescription">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+        <mat-label for="issueTypes">Issue types</mat-label>
+            <mat-select formControlName="issueTypes" id="issueTypes">
+                <mat-option *ngFor="let issueType of issueTypes; let i = index" [value]="issueTypes[i].name">
+                    {{issueTypes[i].name}}
+                </mat-option>
+            </mat-select>
+    </mat-form-field>
+</form>
+

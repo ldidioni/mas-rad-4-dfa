@@ -14,4 +14,16 @@ export class IssueTypeService {
   loadAllIssueTypes(): Observable<IssueType[]> {
     return this.http.get<IssueType[]>(`${environment.apiUrl}/issueTypes`);
   }
+
+  loadIssueType(id: number): Observable<IssueType> {
+    return this.http.get<IssueType>(`${environment.apiUrl}/issueTypes/${id}`);
+  }
+
+  createIssueType(issueType: IssueType): Observable<IssueType> {
+    return this.http.post<IssueType>(`${environment.apiUrl}/issueTypes`, issueType);
+  }
+
+  updateIssueType(issueType: IssueType): Observable<IssueType> {
+    return this.http.patch<IssueType>(`${environment.apiUrl}/issueTypes/${issueType.id}`, issueType);
+  }
 }

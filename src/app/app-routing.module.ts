@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginPageComponent } from './security/login-page/login-page.component';
 import { DummyPageComponent } from './dummy-page/dummy-page.component';
 import { AuthGuard } from './security/guards/auth.guard';
+import { IssueListComponent } from './issue/issue-list/issue-list.component';
 
 
 const routes: Routes = [
@@ -14,6 +15,11 @@ const routes: Routes = [
     path: "dummy",
     component: DummyPageComponent,
     // Prevent access to this page to unauthenticated users
+    canActivate: [AuthGuard],
+  },
+  {
+    path: "issue-list",
+    component: IssueListComponent,
     canActivate: [AuthGuard],
   },
 ];
