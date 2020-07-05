@@ -1,0 +1,82 @@
+<h2>Register as a new citizen</h2>
+<form novalidate 
+      (ngSubmit)="registerUser()" 
+      [formGroup]="registerForm">
+    <div>
+        <label for="nameId">First Name</label>
+        <input 
+            id="nameId" 
+            type="text"
+            placeholder="Username (required)"
+            formControlName="name"
+            [ngClass]="{ 'is-invalid': nameMessage }" />
+        <span class="invalid-feedback">
+            {{ nameMessage }}
+        </span>
+
+        <div formGroupName="passwordGroup">
+            <label for="passwordId">Password</label>
+            <input
+                id="passwordId" 
+                type="password"
+                placeholder="Password (required)"
+                formControlName="password"
+                [ngClass]="{ 'is-invalid': passwordMessage }" />
+
+            <label for="passwordRepeatId">Password confirmation</label>
+            <input 
+                id="passwordRepeatId" 
+                type="password"
+                placeholder="Password confirmation (required)"
+                formControlName="passwordRepeat"
+                [ngClass]="{ 'is-invalid': passwordMessage || passwordGroupMessage }" />
+            <span class="invalid-feedback">
+                {{ passwordMessage }}
+                {{ passwordGroupMessage }}
+            </span>
+        </div>
+
+        <label for="firstnameId">First Name</label>
+        <input 
+            id="firstnameId" 
+            type="text"
+            placeholder="First name (required)"
+            formControlName="firstname"
+            [ngClass]="{ 'is-invalid': firstnameMessage }" />
+        <span class="invalid-feedback">
+            {{ firstnameMessage }}
+        </span>
+
+        <label for="lastnameId">Last Name</label>
+        <input 
+            id="lastnameId" 
+            type="text"
+            placeholder="Last name (required)"
+            formControlName="lastname"
+            [ngClass]="{ 'is-invalid': lastnameMessage }" />
+        <span class="invalid-feedback">
+            {{ lastnameMessage }}
+        </span>
+
+        <label for="phoneId">Phone</label>
+        <input 
+            id="phoneId" 
+            type="text"
+            placeholder="Phone (optional)"
+            formControlName="phone"
+            [ngClass]="{ 'is-invalid': phoneMessage }" />
+        <span class="invalid-feedback">
+            {{ phoneMessage }}
+        </span>
+
+        <button
+            type="submit"
+            [title]="registerForm.valid ? 'Register' : 'Please complete the registration form'"
+            [disabled]="!registerForm.valid">
+            Register
+        </button>
+        <div>
+            <a [routerLink]="['/login']">Already have an account? Sign in here.</a>
+        </div>
+    </div>
+</form>
