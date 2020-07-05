@@ -1,0 +1,17 @@
+export class RegistRequest {
+    name: string;
+    password: string;
+    firstname: string;
+    lastname: string;
+    phone: string;
+    roles: string[];
+
+    constructor() {
+        this.name = null;
+        this.password = null;
+        this.firstname = null;
+        this.lastname = null;
+        this.phone = null;
+        this.roles = ['citizen'];
+    }
+}
