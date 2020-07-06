@@ -27,7 +27,7 @@ export class RegisterPageComponent implements OnInit {
 
   registerForm: FormGroup;
   registration: RegistRequest;
-  
+
   errorMessage: string;
   nameMessage: string;
   passwordMessage: string;
@@ -51,7 +51,7 @@ export class RegisterPageComponent implements OnInit {
   private passwordGroupValidationMessages = {
     match: 'The password confirmation and password do not match.'
   };
- 
+
   private firstnameValidationMessages = {
     required: 'Please enter a firstname.',
     minlength: 'The firstname must contain at least 2 characters.',
@@ -69,8 +69,8 @@ export class RegisterPageComponent implements OnInit {
   };
 
   constructor(private formBuilder: FormBuilder,
-              private userService: UserService) { 
-    
+              private userService: UserService) {
+
     this.registration = new RegistRequest();
   }
 

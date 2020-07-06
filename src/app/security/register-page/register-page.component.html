@@ -1,82 +1,104 @@
 <h2>Register as a new citizen</h2>
-<form novalidate 
-      (ngSubmit)="registerUser()" 
+<form novalidate
+      (ngSubmit)="registerUser()"
       [formGroup]="registerForm">
-    <div>
-        <label for="nameId">First Name</label>
-        <input 
-            id="nameId" 
+
+    <mat-form-field appearance="outline">
+        <mat-label for="nameId">First Name</mat-label>
+        <input matInput
+            id="nameId"
             type="text"
             placeholder="Username (required)"
             formControlName="name"
             [ngClass]="{ 'is-invalid': nameMessage }" />
-        <span class="invalid-feedback">
-            {{ nameMessage }}
-        </span>
+        <mat-error>
+            <span class="invalid-feedback">
+                {{ nameMessage }}
+            </span>
+        </mat-error>
+    </mat-form-field>
 
-        <div formGroupName="passwordGroup">
-            <label for="passwordId">Password</label>
-            <input
-                id="passwordId" 
+    <div formGroupName="passwordGroup">
+        <mat-form-field appearance="outline">
+            <mat-label for="passwordId">Password</mat-label>
+            <input matInput
+                id="passwordId"
                 type="password"
                 placeholder="Password (required)"
                 formControlName="password"
                 [ngClass]="{ 'is-invalid': passwordMessage }" />
+        </mat-form-field>
 
-            <label for="passwordRepeatId">Password confirmation</label>
-            <input 
-                id="passwordRepeatId" 
+        <mat-form-field appearance="outline">
+            <mat-label for="passwordRepeatId">Password confirmation</mat-label>
+            <input matInput
+                id="passwordRepeatId"
                 type="password"
                 placeholder="Password confirmation (required)"
                 formControlName="passwordRepeat"
                 [ngClass]="{ 'is-invalid': passwordMessage || passwordGroupMessage }" />
-            <span class="invalid-feedback">
-                {{ passwordMessage }}
-                {{ passwordGroupMessage }}
-            </span>
-        </div>
+            <mat-error>
+                <span class="invalid-feedback">
+                    {{ passwordMessage }}
+                    {{ passwordGroupMessage }}
+                </span>
+            </mat-error>
+        </mat-form-field>
+    </div>
 
-        <label for="firstnameId">First Name</label>
-        <input 
-            id="firstnameId" 
+    <mat-form-field appearance="outline">
+        <mat-label for="firstnameId">First Name</mat-label>
+        <input matInput
+            id="firstnameId"
             type="text"
             placeholder="First name (required)"
             formControlName="firstname"
             [ngClass]="{ 'is-invalid': firstnameMessage }" />
-        <span class="invalid-feedback">
-            {{ firstnameMessage }}
-        </span>
+        <mat-error>
+            <span class="invalid-feedback">
+                {{ firstnameMessage }}
+            </span>
+        </mat-error>
+    </mat-form-field>
 
-        <label for="lastnameId">Last Name</label>
-        <input 
-            id="lastnameId" 
+    <mat-form-field appearance="outline">
+        <mat-label for="lastnameId">Last Name</mat-label>
+        <input matInput
+            id="lastnameId"
             type="text"
             placeholder="Last name (required)"
             formControlName="lastname"
             [ngClass]="{ 'is-invalid': lastnameMessage }" />
-        <span class="invalid-feedback">
-            {{ lastnameMessage }}
-        </span>
+        <mat-error>
+            <span class="invalid-feedback">
+                {{ lastnameMessage }}
+            </span>
+        </mat-error>
+    </mat-form-field>
 
-        <label for="phoneId">Phone</label>
-        <input 
-            id="phoneId" 
+    <mat-form-field appearance="outline">
+        <mat-label for="phoneId">Phone</mat-label>
+        <input matInput
+            id="phoneId"
             type="text"
             placeholder="Phone (optional)"
             formControlName="phone"
             [ngClass]="{ 'is-invalid': phoneMessage }" />
-        <span class="invalid-feedback">
-            {{ phoneMessage }}
-        </span>
+            <mat-error>
+                <span class="invalid-feedback">
+                    {{ phoneMessage }}
+                </span>
+            </mat-error>
+    </mat-form-field>
 
-        <button
-            type="submit"
-            [title]="registerForm.valid ? 'Register' : 'Please complete the registration form'"
-            [disabled]="!registerForm.valid">
-            Register
-        </button>
-        <div>
-            <a [routerLink]="['/login']">Already have an account? Sign in here.</a>
-        </div>
-    </div>
+    <button
+        mat-raised-button color="primary"
+        type="submit"
+        [title]="registerForm.valid ? 'Register' : 'Please complete the registration form'"
+        [disabled]="!registerForm.valid">
+        Register
+    </button>
 </form>
+<div>
+    <a [routerLink]="['/login']">Already have an account? Sign in here.</a>
+</div>
