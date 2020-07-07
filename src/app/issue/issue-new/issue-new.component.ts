@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, AbstractControl, FormArray } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, AbstractControl, FormArray, FormControl } from '@angular/forms';
 import { IssueNewRequest } from 'src/app/models/issue-new-request';
 import { Point } from 'src/app/models/issue';
 import { IssueService } from 'src/app/api/services/issue.service';
@@ -33,7 +33,8 @@ export class IssueNewComponent implements OnInit {
     this.newIssueForm = this.formBuilder.group({
       description:  ['', [Validators.required, Validators.maxLength(1000)]],
       issueType:    ['', [Validators.required]],
-      imageUrls:  this.formBuilder.array([this.buildImageUrl()]),
+      imageUrl:     ['', [Validators.required, Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')]],
+      additionalImageUrls:  this.formBuilder.array([this.buildImageUrl()]),
       tags:         ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]]
       //roles:      [{value: ['citizen'], disabled: true}]
     });
@@ -45,12 +46,16 @@ export class IssueNewComponent implements OnInit {
     });
   }
 
-  get imageUrls(): FormArray {
-    return <FormArray>this.newIssueForm.get('imageUrls');
+  get imageUrl(): FormControl {
+    return <FormControl>this.newIssueForm.get('imageUrl');
+  }
+
+  get additionalImageUrls(): FormArray {
+    return <FormArray>this.newIssueForm.get('additionalImageUrls');
   }
 
   addImageUrl(): void {
-    this.imageUrls.push(this.buildImageUrl());
+    this.additionalImageUrls.push(this.buildImageUrl());
   }
 
   getAllIssueTypes(): void {
@@ -136,7 +141,7 @@ export class IssueNewComponent implements OnInit {
         //this.issueNewRequest.state = "new";
         //this.issueNewRequest.createdAt = null ;
         //this.issueNewRequest.creatorHref = me.href;
-        //this.issueNewRequest.imageUrl = this.newIssueForm.get(this.imageUrls.get('0.imageUrl'))?.value;
+        //this.issueNewRequest.imageUrl = this.newIssueForm.get(this.additionalImageUrls.get('0.imageUrl'))?.value;
 
         this.issueService.createIssue(this.issueNewRequest)
           .subscribe({

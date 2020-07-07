@@ -1,4 +1,4 @@
-<h2>Register as a new citizen</h2>
+<h2>Report a new issue</h2>
 <form novalidate
       (ngSubmit)="reportIssue()"
       [formGroup]="newIssueForm">
@@ -13,27 +13,38 @@
         <span class="invalid-feedback">
             {{ descriptionMessage }}
         </span>
-<!--
-        <div formArrayName="imageUrls">
+
+        <label for="imageUrlId">Image URL</label>
+        <input
+            id="imageUrlId"
+            type="text"
+            placeholder="Image URL"
+            formControlName="imageUrl"
+            [ngClass]="{ 'is-invalid': descriptionMessage }" />
+        <span class="invalid-feedback">
+            {{ descriptionMessage }}
+        </span>
+
+        <div formArrayName="additionalImageUrls">
             <div [formGroupName]="i"
-                *ngFor="let imageUrl of imageUrls.controls; let i=index">
+                *ngFor="let additionalImageUrl of additionalImageUrls.controls; let i=index">
                 <div [formGroupName]="i">
-                    <label attr.for="{{ 'imageUrl' + i }}">Image URL</label>
+                    <label attr.for="{{ 'additionalImageUrl' + i }}">Additional Image URL</label>
                     <input
-                        id="{{ 'imageUrl' + i }}"
+                        id="{{ 'additionalImageUrl' + i }}"
                         type="text"
-                        placeholder="Image URL"
-                        formControlName="imageUrl"
+                        placeholder="Additional ImageUrl URL"
+                        formControlName="additionalImageUrls"
                         [ngClass]="{ 'is-invalid': imageUrlMessage }" />
                 </div>
             </div>
             <span class="invalid-feedback">
                 {{ imageUrlMessage }}
             </span>
-        </div> -->
+        </div>
         <button
             type="button"
-            [disabled]="!imageUrls.valid"
+            [disabled]="!imageUrl.valid"
             (click)="addImageUrl()">
             Add additional image
         </button>
