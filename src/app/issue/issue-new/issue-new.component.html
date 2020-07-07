@@ -1,0 +1,68 @@
+<h2>Register as a new citizen</h2>
+<form novalidate
+      (ngSubmit)="reportIssue()"
+      [formGroup]="newIssueForm">
+    <div>
+        <label for="descriptionId">Description</label>
+        <input
+            id="descriptionId"
+            type="text"
+            placeholder="Description (required)"
+            formControlName="description"
+            [ngClass]="{ 'is-invalid': descriptionMessage }" />
+        <span class="invalid-feedback">
+            {{ descriptionMessage }}
+        </span>
+<!--
+        <div formArrayName="imageUrls">
+            <div [formGroupName]="i"
+                *ngFor="let imageUrl of imageUrls.controls; let i=index">
+                <div [formGroupName]="i">
+                    <label attr.for="{{ 'imageUrl' + i }}">Image URL</label>
+                    <input
+                        id="{{ 'imageUrl' + i }}"
+                        type="text"
+                        placeholder="Image URL"
+                        formControlName="imageUrl"
+                        [ngClass]="{ 'is-invalid': imageUrlMessage }" />
+                </div>
+            </div>
+            <span class="invalid-feedback">
+                {{ imageUrlMessage }}
+            </span>
+        </div> -->
+        <button
+            type="button"
+            [disabled]="!imageUrls.valid"
+            (click)="addImageUrl()">
+            Add additional image
+        </button>
+
+        <label for="typeId">Type</label>
+        <select
+            id="typeId"
+            formControlName="issueType">
+            <option *ngFor="let issueType of issueTypes" [ngValue]="issueType.href">
+                {{ issueType.name }}
+            </option>
+        </select>
+
+        <label for="tagsId">Tags</label>
+        <input
+            id="tagsId"
+            type="text"
+            placeholder="tags???"
+            formControlName="tags"
+            [ngClass]="{ 'is-invalid': tagsMessage }" />
+        <span class="invalid-feedback">
+            {{ tagsMessage }}
+        </span>
+
+        <button
+            type="submit"
+            [title]="newIssueForm.valid ? 'Submit' : 'Please complete the form'"
+            [disabled]="!newIssueForm.valid">
+            Register
+        </button>
+    </div>
+</form>

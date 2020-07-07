@@ -14,7 +14,7 @@ export class Issue {
     tags?: string[];
 }
 
-class Point {
+export class Point {
     type: "Point";
     coordinates: [number, number];
 }

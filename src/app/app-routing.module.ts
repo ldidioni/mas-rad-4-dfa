@@ -5,6 +5,7 @@ import { DummyPageComponent } from './dummy-page/dummy-page.component';
 import { AuthGuard } from './security/guards/auth.guard';
 import { IssueListComponent } from './issue/issue-list/issue-list.component';
 import { RegisterPageComponent } from './security/register-page/register-page.component';
+import { IssueNewComponent } from './issue/issue-new/issue-new.component';
 
 
 const routes: Routes = [
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: "", redirectTo: "dummy", pathMatch: "full" },
   { path: "login", component: LoginPageComponent },
   { path: "register", component: RegisterPageComponent },
+  { path: "issue/new", component: IssueNewComponent },
   // Add the route to display the dummy page
   {
     path: "dummy",

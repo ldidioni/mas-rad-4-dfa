@@ -1,8 +1,9 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Issue } from "src/app/models/issue";
 import { environment } from "../../../environments/environment";
+import { IssueNewRequest } from 'src/app/models/issue-new-request';
 
 
 @Injectable({
@@ -19,8 +20,10 @@ export class IssueService {
     return this.http.get<Issue>(`${environment.apiUrl}/issues/${id}`);
   }
 
-  createIssue(issue: Issue): Observable<Issue> {
-    return this.http.post<Issue>(`${environment.apiUrl}/issues`, issue);
+  createIssue(issueReq: IssueNewRequest): Observable<Issue> {
+    const headers = new HttpHeaders({ 'Content-type': 'application/json'});
+
+    return this.http.post<Issue>(`${environment.apiUrl}/issues`, issueReq, { headers: headers });
   }
 
   updateIssue(issue: Issue): Observable<Issue> {

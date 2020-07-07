@@ -23,6 +23,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { IssueNewComponent } from './issue/issue-new/issue-new.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     LoginPageComponent,
     LogoutButtonComponent,
     MenuComponent,
-    RegisterPageComponent
+    RegisterPageComponent,
+    IssueNewComponent
   ],
   imports: [
     BrowserModule,
