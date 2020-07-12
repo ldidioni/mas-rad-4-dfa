@@ -33,15 +33,15 @@ export class IssueNewComponent implements OnInit {
     this.newIssueForm = this.formBuilder.group({
       description:  ['', [Validators.required, Validators.maxLength(1000)]],
       issueType:    ['', [Validators.required]],
-      imageUrl:     ['', [Validators.required, Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')]],
+      //imageUrl:     ['', [Validators.required, Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')]],
       additionalImageUrls:  this.formBuilder.array([this.buildImageUrl()]),
       tags:         ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]]
       //roles:      [{value: ['citizen'], disabled: true}]
     });
   }
 
-  buildImageUrl(): FormGroup {
-    return this.formBuilder.group({
+  buildImageUrl(): FormControl {
+    return this.formBuilder.control({
       imageUrl:     ['', [Validators.required, Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')]]
     });
   }
@@ -134,8 +134,8 @@ export class IssueNewComponent implements OnInit {
         this.issueNewRequest.issueTypeHref = null ;
         //this.issueNewRequest.location = new Point([0, 0]);
         this.issueNewRequest.description = this.newIssueForm.get('description').value;
-        this.issueNewRequest.imageUrl = null ;
-        this.issueNewRequest.additionalImageUrls = null ;
+        this.issueNewRequest.imageUrl = this.newIssueForm.get('additionalImageUrls').value[0] ;
+        this.issueNewRequest.additionalImageUrls = this.newIssueForm.get('additionalImageUrls').value.slice(1) ;
         this.issueNewRequest.tags = null ;
 
         //this.issueNewRequest.state = "new";
