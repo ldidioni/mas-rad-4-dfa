@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IssueService } from 'src/app/api/services/issue.service';
-import { Issue } from 'src/app/models/issue';
+import { Issue, Point } from 'src/app/models/issue';
 
 
 @Component({
@@ -11,18 +11,23 @@ import { Issue } from 'src/app/models/issue';
 export class IssueListComponent implements OnInit {
 
   issues: Issue[];
+  issuePoints: Point[];
   displayedColumns: string[] = ['id', 'state', 'description', 'createdAt', 'updatedAt'];
 
   constructor(private issueService: IssueService) { }
 
   ngOnInit(): void {
     this.getAllIssues();
+    //this.issuePoints = [];
   }
 
   getAllIssues(): void {
     this.issueService.loadAllIssues()
         .subscribe({
-            next: (issues: Issue[]) => this.issues = issues,
+            next: (issues: Issue[]) => {
+              this.issues = issues;
+              this.issuePoints = issues.map((issue: Issue) => new Point(issue.location.coordinates));
+              console.log(this.issuePoints);},
             //error: err => this.errorMessage = err
         });
   }

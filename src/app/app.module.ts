@@ -25,6 +25,8 @@ import { MatTableModule } from '@angular/material/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { IssueNewComponent } from './issue/issue-new/issue-new.component';
 
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { IssueMapComponent } from './issue/issue-map/issue-map.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { IssueNewComponent } from './issue/issue-new/issue-new.component';
     LogoutButtonComponent,
     MenuComponent,
     RegisterPageComponent,
-    IssueNewComponent
+    IssueNewComponent,
+    IssueMapComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +54,8 @@ import { IssueNewComponent } from './issue/issue-new/issue-new.component';
     MatMenuModule,
     MatPaginatorModule,
     MatSelectModule,
-    MatTableModule
+    MatTableModule,
+    LeafletModule
   ],
   providers: [
     {

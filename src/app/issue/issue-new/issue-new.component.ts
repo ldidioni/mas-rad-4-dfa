@@ -124,7 +124,7 @@ export class IssueNewComponent implements OnInit {
   //registerForm.get('passwordGroup.password').valid
 
   onMapClicked(){
-    this.issueNewRequest.location = new Point();
+    this.issueNewRequest.location = new Point([0, 0]);
   }
 
   reportIssue(): void {
@@ -132,7 +132,7 @@ export class IssueNewComponent implements OnInit {
       if (this.newIssueForm.dirty) {
 
         this.issueNewRequest.issueTypeHref = null ;
-        this.issueNewRequest.location = new Point();
+        //this.issueNewRequest.location = new Point([0, 0]);
         this.issueNewRequest.description = this.newIssueForm.get('description').value;
         this.issueNewRequest.imageUrl = null ;
         this.issueNewRequest.additionalImageUrls = null ;
@@ -160,5 +160,9 @@ export class IssueNewComponent implements OnInit {
     // Reset the form to clear the flags
     this.newIssueForm.reset();
     //this.router.navigate(['/issues']);
+  }
+
+  onLocationSet(location: [number, number]): void {
+    this.issueNewRequest.location = new Point(location);
   }
 }

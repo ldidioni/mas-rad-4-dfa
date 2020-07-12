@@ -17,4 +17,9 @@ export class Issue {
 export class Point {
     type: "Point";
     coordinates: [number, number];
+
+    constructor(coordinates: [number, number]) {
+        this.type = "Point";
+        this.coordinates = coordinates;
+    }
 }
